@@ -11,9 +11,9 @@ import os, glob
 import string
 def historical_share_csv_web_scraping(option):
     if not os.path.exists(f"C:\\Users\\sheik jaheer\\OneDrive\\Desktop\\TYNYBAY\\udbhata\\udbhata-poc-main\\share_price_data\\{option.lower()}.csv"):
-        chrome_options = Options()
-        chrome_options.add_argument("--headless=new")
-        driver = webdriver.Chrome(options=chrome_options)
+        # chrome_options = Options()
+        # chrome_options.add_argument("--headless=new")
+        # driver = webdriver.Chrome(options=chrome_options)
 
         # download_directory = "C:/Users/sheik jaheer\Downloads"
         # prefs={'download.default_directory':download_directory}

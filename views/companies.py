@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from TSR_calc import tsr,history
-from TSR_we_bscraping import historical_share_csv_web_scraping
+# from TSR_we_bscraping import historical_share_csv_web_scraping 
 from average_tenure import average_tenure_of_a_company
 from financial import Ebitda,debt_to_equity,current_investment,ROCE_2023,ESG,Awards,Board_industry_skills
 # from country import stre
@@ -24,8 +24,8 @@ def load_companies():
         st.write('You selected:', option)
         if option == 'drreddy':
             # st.session_state.company_selected = option
-            t=historical_share_csv_web_scraping("drreddy")
-            t
+            # t=historical_share_csv_web_scraping("drreddy")
+            # t
             # st.write(f'Average tenure of {option} company directors: {average_tenure_of_a_company("drreddy")} months')
             # # t=historical_share_csv_web_scraping("drreddy")
             # # t
