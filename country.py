@@ -41,10 +41,10 @@ import time
 import os, glob
 import string
 import requests
-chrome_options = Options()
-chrome_options.add_argument("--headless=new")
-driver = webdriver.Chrome(options=chrome_options)
-# driver = webdriver.Chrome()
+# chrome_options = Options()
+# chrome_options.add_argument("--headless=new")
+# driver = webdriver.Chrome(options=chrome_options)
+driver = webdriver.Chrome()
 def Corruption_Perceptions_Index():
     url = "https://www.transparency.org/en/countries/india"
 
