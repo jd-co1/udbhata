@@ -14,8 +14,8 @@ information=mydb.companies_data
 def tsr(option):
     k=information.find_one({"name":f"{option}"})
 
-    if 'dividend' in k:
-                    dividend=k['dividend']
+    if 'tsr_value' in k:
+                    tsr_value=k['tsr_value']
     else:
         from views.reports import run_question
         if option.lower() == "drreddy":
@@ -27,23 +27,26 @@ def tsr(option):
                     }})
         # print(dividend)
     # data=pd.read_csv(f"C:\\Users\\sheik jaheer\\OneDrive\\Desktop\\TYNYBAY\\udbhata\\udbhata-poc-main\\share_price_data\\drreddy.csv")
-    data=pd.read_csv(f"C:\\Users\\sheik jaheer\\OneDrive\\Desktop\\TYNYBAY\\udbhata\\udbhata-poc-main\\share_price_data\\{option.lower()}.csv")
-    df=pd.DataFrame(data)
-    # print(len(df))
-    val2023=df.iloc[0,4]
-    # print(val2023)
+        data=pd.read_csv(f"C:\\Users\\sheik jaheer\\OneDrive\\Desktop\\TYNYBAY\\udbhata\\udbhata-poc-main\\share_price_data\\{option.lower()}.csv")
+        df=pd.DataFrame(data)
+        # print(len(df))
+        val2023=df.iloc[0,4]
+        # print(val2023)
 
-    val2022=df.iloc[len(df)-1,4]
-    # print(val2022)   
+        val2022=df.iloc[len(df)-1,4]
+        # print(val2022)   
 
-    # number_only = re.sub(r'\D', '',dividend)
-    # print(number_only)
+        # number_only = re.sub(r'\D', '',dividend)
+        # print(number_only)
 
-    tsr_value=(float(val2023)-float(val2022))+float(dividend)/float(val2022)
-    # print(tsr_value)
+        tsr_value=(float(val2023)-float(val2022))+float(dividend)/float(val2022)
+        # print(tsr_value)
+        information.update_one({"name":f"{option}"},{"$set":{
+                                                    "tsr_value":tsr_value
+                        }})
     return tsr_value
 
-# print(tsr('drreddy'))
+print(tsr('drreddy'))
 
 def history(option):
     k=information.find_one({"name":f"{option}"})
@@ -102,4 +105,4 @@ def history(option):
         #     average_days = doc["average_days"]
 
     return average_days
-# print(history("drreddy"))
+print(history("drreddy"))
