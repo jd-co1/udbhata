@@ -18,10 +18,7 @@ def tsr(option):
                     tsr_value=k['tsr_value']
     else:
         from views.reports import run_question
-        if option.lower() == "drreddy":
-            dividend,source=run_question("what is the dividend per share value, only give number")
-        elif option.lower() == "sunpharma":
-            dividend,source_doc=run_question("what is the total dividend , only give number")
+
         information.update_one({"name":f"{option}"},{"$set":{
                                                 "dividend":dividend
                     }})

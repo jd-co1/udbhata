@@ -21,7 +21,6 @@ def Ebitda(option):
             return ebitda
     else:
         from views.reports import run_question
-        ebitda,source_docs=run_question("EBITDA margin for the year 2023")
         # num_only=re.sub(r'\D', '',ebit)
         # information.insert_one({"ebitda":ebit})
         information.update_one({"name":f"{option}"},{"$set":{
@@ -39,9 +38,7 @@ def debt_to_equity(option):
                     return debt_to_equity
     else:
         from views.reports import run_question
-        deb,source=run_question("what is the total debt of the company, just give value dont give description ")
         # print(deb)
-        equi,source_docs=run_question("what is the total shareholders equity of the company for the year 2023, just give value dont give description ")
         # print(equi)
         # num_only=re.sub(r'[^\d.]', '', deb)
         deb=deb.replace(",","")
@@ -69,7 +66,6 @@ def ROCE_2023(option):
                     return roce
     else:
         from views.reports import run_question
-        roce,source=run_question(f"what is the value of Earnings before interest and taxes divided by Capital Employed for 2023 year ")
         # num_only=float(roce)
         # return abs(roce)
         # information.insert_one({"roce":roce})
@@ -86,7 +82,6 @@ def current_investment(option):
                     return current_investment
     else:
         from views.reports import run_question
-        current_investment,source=run_question("from the report search current investments, just give value dont give description ")
         
         # print(ms)
         # information.insert_one({"current_investment":cur_inv})
@@ -117,14 +112,6 @@ def ESG(option):
     else:
         from views.reports import run_question
         questions=[
-        "Does the company has a independance statement for the board of directors in place?",
-        "Does the company have a formal board diversity policy that clearly requires diversity factors such as gender, race, ethnicity, country of origin, nationality or cultural background in the board nomination process?",
-        "Has the company conducted a materiality analysis to identify the most important material issues (economic, environmental, or social) for the company's performance?",
-        "Does the company publicly disclose details of the materiality analysis, including information on how they conduct the materiality analysis process and progress towards targets or metrics?",
-        "Does the company have Risk Management Committee.",
-        "Does the company identify emerging risks, and give the mitigation plans for the risks",
-        "Does the company have business continuity or contigency plans and incident reponse in place for cybersecurity or data security?",
-        "Does the company have a Supplier Code of Conduct and is it publicly available?"
         
 
         ]
@@ -168,9 +155,7 @@ def Awards():
     from views.reports import run_question
     aw=run_question("""
                     
-                    What are the key awards and recognitions of the company in the areas of Finance, Risk management, Sustainability and Governance?
-                    Just give the count of awards and recognitions.
-                    
+        
                     """) 
     num_only=re.sub(r'\D', '',aw)
     # information.insert_one({"awards":num_only})
@@ -185,10 +170,7 @@ def Board_industry_skills(option):
                     board_industry_skills=k['board_industry_skills']
     else:
         from views.reports import run_question
-        total,source=run_question("How many board members are there in the company?")
-        print(total)
-        bi,source_doc=run_question("How many indipendent board members have experience in the pharmaceutical industry?")
-        print(bi)
+        
         num_only=re.sub(r'\D', '',total)
         print(num_only)
         num=re.sub(r'\D', '',bi)
