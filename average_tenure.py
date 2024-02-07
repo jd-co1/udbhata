@@ -65,7 +65,7 @@ def average_tenure_of_a_company(option):
 
 
                     # Calculate and print the average tenure
-                    average_tenure = df['Tenure'].mean()
+                    average_tenure = df['Tenure'].sum() / len(df)
                     print(average_tenure)
                     information.update_one({"name":f"{option}"},{"$set":{
                                                 "average_tenure":average_tenure
@@ -75,7 +75,7 @@ def average_tenure_of_a_company(option):
         
 
 
-# print(average_tenure_of_a_company("drreddy"))
+print(average_tenure_of_a_company("drreddy"))
 
 
 
