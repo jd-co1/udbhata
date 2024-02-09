@@ -17,7 +17,6 @@ def tsr(option):
     if 'tsr_value' in k:
                     tsr_value=k['tsr_value']
     else:
-        from views.reports import run_question
 
         information.update_one({"name":f"{option}"},{"$set":{
                                                 "dividend":dividend
