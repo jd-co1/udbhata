@@ -24,8 +24,8 @@ def load_companies():
         st.write('You selected:', option)
         if option == option:
             # st.session_state.company_selected = option
-            t=historical_share_csv_web_scraping(option)
-            t
+            # t=historical_share_csv_web_scraping(option)
+            # t
             # st.write(f'Average tenure of {option} company directors: {average_tenure_of_a_company("drreddy")} months')
             # # t=historical_share_csv_web_scraping("drreddy")
             # # t
