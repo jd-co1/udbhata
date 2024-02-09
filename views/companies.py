@@ -22,7 +22,7 @@ def load_companies():
         placeholder="companies")
     if option == option:
         st.write('You selected:', option)
-        if option == 'drreddy':
+        if option == option:
             # st.session_state.company_selected = option
             t=historical_share_csv_web_scraping(option)
             t
@@ -38,8 +38,8 @@ def load_companies():
                 'Value': [
                     average_tenure_of_a_company(option),
                     Board_industry_skills(option),
-                    tsr("drreddy"),
-                    history("drreddy")
+                    tsr(option),
+                    history(option)
                 ]
             }
             table_df = pd.DataFrame(data)
