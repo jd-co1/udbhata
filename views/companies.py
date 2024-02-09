@@ -18,8 +18,10 @@ def load_companies():
     option = st.selectbox(
         'Select a company',
         companies_df['Company'],
-        index=1,
-        placeholder="companies")
+        index=companies_df.iloc[0,0],
+        placeholder="companies",
+        
+        )
     if option == option:
         st.write('You selected:', option)
         if option == f'{option}':
