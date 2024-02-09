@@ -16,8 +16,8 @@ information=mydb.companies_data
 
 def Ebitda(option):
     k=information.find_one({"name":f"{option}"})
-    if 'ebitda' in k:
-            ebitda=k['ebitda']
+    if 'ebit/net_sales' in k:
+            ebitda=k['ebit/net_sales']
             return ebitda
     else:
         from views.reports import run_question
