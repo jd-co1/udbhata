@@ -22,7 +22,7 @@ def load_companies():
         placeholder="companies")
     if option == option:
         st.write('You selected:', option)
-        if option == option:
+        if option == f'{option}':
             # st.session_state.company_selected = option
             # t=historical_share_csv_web_scraping(option)
             # t
