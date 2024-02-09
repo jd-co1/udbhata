@@ -18,7 +18,7 @@ def load_companies():
     option = st.selectbox(
         'Select a company',
         companies_df['Company'],
-        index=None,
+        index=0,
         placeholder="companies")
     if option == option:
         st.write('You selected:', option)
