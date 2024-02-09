@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from TSR_calc import tsr,history
+
 from average_tenure import average_tenure_of_a_company
 from financial import Ebitda,debt_to_equity,current_investment,ROCE_2023,ESG,Awards,Board_industry_skills
 # from country import stre
