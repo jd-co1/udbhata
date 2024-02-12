@@ -5,7 +5,7 @@ from country import stre,credit_ratings_algo
 
 
 
-my_list = stre('drreddy')
+my_list = stre()
 
 def convert_to_number(value):
     if isinstance(value, str):
