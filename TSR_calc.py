@@ -18,9 +18,7 @@ def tsr(option):
                     tsr_value=k['tsr_value']
     else:
 
-        information.update_one({"name":f"{option}"},{"$set":{
-                                                "dividend":dividend
-                    }})
+        
         # print(dividend)
     # data=pd.read_csv(f"C:\\Users\\sheik jaheer\\OneDrive\\Desktop\\TYNYBAY\\udbhata\\udbhata-poc-main\\share_price_data\\drreddy.csv")
         data=pd.read_csv(f"C:\\Users\\sheik jaheer\\OneDrive\\Desktop\\TYNYBAY\\udbhata\\udbhata-poc-main\\share_price_data\\{option.lower()}.csv")
@@ -35,11 +33,7 @@ def tsr(option):
         # number_only = re.sub(r'\D', '',dividend)
         # print(number_only)
 
-        tsr_value=(float(val2023)-float(val2022))+float(dividend)/float(val2022)
-        # print(tsr_value)
-        information.update_one({"name":f"{option}"},{"$set":{
-                                                    "tsr_value":tsr_value
-                        }})
+        
     return tsr_value
 
 print(tsr('drreddy'))

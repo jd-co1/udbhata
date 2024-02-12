@@ -146,8 +146,8 @@ def Terror():
     matched = df[df['COUNTRY'].str.strip().str.lower() == 'India'.strip().lower()].iat[0, 1]
     return matched
 
-def stre(option):
-    k=information.find_one({"name":f"{option}"})
+def stre():
+    k=information.find_one({"name":f"drreddy"})
     if 'country_risk' in k:
                     data_dict=k['country_risk']
     # Extract values from data_dict
@@ -201,7 +201,7 @@ def stre(option):
             matched=df['Value'].to_list()
             print(matched)
 
-            information.update_one({"name":f"{option}"},{"$set":{
+            information.update_one({"name":f"drreddy"},{"$set":{
                                                 "country_risk":data_dict
                     }})
 #     information.insert_one({"country_risk":matched})
