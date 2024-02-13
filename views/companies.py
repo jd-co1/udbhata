@@ -22,7 +22,7 @@ def load_companies():
         placeholder="companies",
         
         )
-    if option == "drreddy" or option == "abbott" or option == "gsk":
+    if option == "drreddy" or option == "abbott" or option == "gsk" or option == "novartis":
         st.write('You selected:', option)
         if option == f'{option}':
             # st.session_state.company_selected = option
