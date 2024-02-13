@@ -22,9 +22,14 @@ def load_companies():
         placeholder="companies",
         
         )
-    if option == "drreddy" or option == "abbott" or option == "gsk" or option == "novartis":
+    if option == "drreddy" or option == "abbott" or option == "gsk" or option == "novartis" or option == "takeda":
         st.write('You selected:', option)
         if option == f'{option}':
+            if option == "drreddy":
+                st.write('The values are INR')
+            elif option == "takeda":
+                st.write('The values are YEN,tsr is USD')
+                
             # st.session_state.company_selected = option
             # t=historical_share_csv_web_scraping(option)
             # t
