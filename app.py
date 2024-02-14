@@ -1,7 +1,7 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 from views.companies import load_companies
-# from views.reports import load_reports
+from views.reports import load_reports
 import streamlit_authenticator as stauth
 import yaml
 from yaml.loader import SafeLoader
@@ -23,8 +23,8 @@ if authentication_status:
     authenticator.logout('Logout', 'sidebar', key='unique_key')
     if selected=="Companies":
         load_companies()
-    # if selected=="Reports":
-    #     load_reports()
+    if selected=="Reports":
+        load_reports()
     if selected == "Logout":
         authentication_status=False
             
