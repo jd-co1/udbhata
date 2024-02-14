@@ -1,7 +1,7 @@
 import streamlit as st
 import os
 import pandas as pd
-from ..RIsk_score.management_hsr import board_industry_skills,TSR,HSR
+from RIsk_score.management_hsr import board_industry_skills,TSR,HSR
 # from pymongo import MongoClient
 
 
