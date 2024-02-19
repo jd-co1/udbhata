@@ -39,7 +39,7 @@ def HSR(option):
         if percent==0:
             gsk_percent1=0
         else:
-            gsk_percent1=(100-percent)*0.03
+            gsk_percent1=(100-percent)*0.06
         return gsk_percent1
         # print(gsk_percent1)
 
@@ -74,7 +74,7 @@ def TSR(option):
         if percent==0:
             gsk_percent1=0
         else:
-            gsk_percent1=(100-percent)*0.03
+            gsk_percent1=(100-percent)*0.06
         return gsk_percent1   
 
 # print(TSR('gsk'))
