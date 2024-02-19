@@ -4,6 +4,7 @@ import pandas as pd
 from RIsk_score.management_hsr import board_industry_skills,TSR,HSR
 # from pymongo import MongoClient
 from RIsk_score.Financial_score import Debt_to_Equity,EBIT_Net_Sales
+from RIsk_score.company_specific import company_Count,Company_Impact
 
 def load_reports():
     st.header("Reports Generator")
@@ -32,6 +33,17 @@ def load_reports():
         debt=Debt_to_Equity(option)
         st.write(f"{option}'s Debt to Equity ratio:",debt)
         st.write(f"Total financial score for {option}:",round((ebit+debt),2))
+
+
+        st.subheader('Industry Risk Score')
+        st.write("NA")
+
+        st.subheader('Company Specific Risk Score')
+        impact=Company_Impact(option)
+        st.write(f"{option}'s Risk Impact:",impact)
+        count=company_Count(option)
+        st.write(f"{option}'s Risk Count:",count)
+        st.write(f"Total company specific score for {option}:",round((impact+count),2))
 
 
 
