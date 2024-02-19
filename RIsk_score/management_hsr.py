@@ -114,4 +114,4 @@ def board_industry_skills(option):
         else:
             gsk_percent1=(100-percent)*0.03
         return gsk_percent1
-# print(board_industry_skills('abbott'))
+# print(board_industry_skills('drreddy'))

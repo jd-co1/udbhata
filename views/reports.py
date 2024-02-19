@@ -24,14 +24,14 @@ def load_reports():
         st.write(f"{option}'s Board Industry Experience:",board)
         Hist=HSR(option)
         st.write(f"{option}'s Historical Share Price:",Hist)
-        st.write(f"Total management score for {option}={tsr}+{board}+{Hist}:",tsr+board+Hist)
+        st.write(f"Total management score for {option}={tsr}+{board}+{Hist}:",round((tsr+board+Hist),2))
 
         st.subheader('Financial Score')
         ebit=EBIT_Net_Sales(option)
         st.write(f"{option}'s EBIT/Net Sales:",ebit)
         debt=Debt_to_Equity(option)
         st.write(f"{option}'s Debt to Equity ratio:",debt)
-        st.write(f"Total financial score for {option}:",ebit+debt)
+        st.write(f"Total financial score for {option}:",round((ebit+debt),2))
 
 
 
