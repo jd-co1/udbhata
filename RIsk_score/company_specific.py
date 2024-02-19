@@ -32,10 +32,7 @@ def Company_Impact(option):
         print(list1)
         op=k.get(option)
         print(op)
-        if op==0:
-            gsk_position=0
-        else:
-            gsk_position=list1.index(op)
+        gsk_position = len([x for x in list1 if x < op])
         print(gsk_position)
         percent=(gsk_position/len(list1))*100
         print(percent)
@@ -72,10 +69,7 @@ def company_Count(option):
         print(list1)
         op=k.get(option)
         # print(op)
-        if op==0:
-            gsk_position=0
-        else:
-            gsk_position=list1.index(op)
+        gsk_position = len([x for x in list1 if x < op])
         print(gsk_position)
         percent=(gsk_position/len(list1))*100
         print(percent)

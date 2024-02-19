@@ -37,17 +37,14 @@ def Investment(option):
         print(list1)
         op=k.get(option)
         print(op)
-        if op==0:
-            gsk_position=0
-        else:
-            gsk_position=list1.index(op)
+        gsk_position = len([x for x in list1 if x < op])
         print(gsk_position)
         percent=(gsk_position/len(list1))*100
         print(percent)
         if percent==0:
             gsk_percent1=0
         else:
-            gsk_percent1=(100-percent)*0.075
+            gsk_percent1=(100-percent)*0.025
         return gsk_percent1
 
 # print(EBIT_Net_Sales('drreddy'))
@@ -81,16 +78,50 @@ def ROCE(option):
     print(list1)
     op=k.get(option)
     print(op)
-    if op==0:
-        gsk_position=0
-    else:
-        gsk_position=list1.index(op)
+    gsk_position = len([x for x in list1 if x < op])
     print(gsk_position)
     percent=(gsk_position/len(list1))*100
     print(percent)
     if percent==0:
         gsk_percent1=0
     else:
-        gsk_percent1=(100-percent)*0.075
+        gsk_percent1=(100-percent)*0.025
     return gsk_percent1
 # print(ROCE('drreddy'))
+
+def esg_db(option):
+    k=information.find_one({"name":f"{option}"})
+    if 'ESG' in k:
+        ESG=k['ESG']
+        data_list=[]
+        for i in ESG:
+            j=i.get('Value')
+            j=j.replace('.','')
+            data_list.append(j)
+        l=data_list.count('Yes')
+        return l
+    else:
+        return "ESG not found in any document"
+    
+def ESG(option):
+    drreddy=esg_db('drreddy')
+    novartis=esg_db('novartis')
+    abbott=esg_db('abbott')
+    gsk=esg_db('gsk')
+    teva=esg_db('teva')
+    takeda=esg_db('takeda')
+    k={'drreddy': drreddy, 'novartis': novartis, 'abbott': abbott, 'gsk': gsk, 'teva': teva, 'takeda': takeda}
+    print(k)
+    list1=sorted(k.values())
+    print(list1)
+    op=k.get(option)
+    print(op)
+    gsk_position = len([x for x in list1 if x < op])
+    print(gsk_position)
+    percent=(gsk_position/len(list1))*100
+    print(percent)
+    if percent==0:
+        gsk_percent1=0
+    else:
+        gsk_percent1=(100-percent)*0.05
+    return gsk_percent1

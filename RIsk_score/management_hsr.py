@@ -29,10 +29,7 @@ def HSR(option):
         # print(k)
         list1=sorted(k.values())
         op=k.get(option)
-        if op==0:
-            gsk_position=0
-        else:
-            gsk_position=list1.index(op)
+        gsk_position = len([x for x in list1 if x < op])
         print(gsk_position)
         percent=(gsk_position/len(list1))*100
         print(percent)
@@ -64,10 +61,7 @@ def TSR(option):
         # print(k)
         list1=sorted(k.values())
         op=k.get(option)
-        if op==0:
-            gsk_position=0
-        else:
-            gsk_position=list1.index(op)
+        gsk_position = len([x for x in list1 if x < op])
         print(gsk_position)
         percent=(gsk_position/len(list1))*100
         print(percent)
@@ -102,10 +96,7 @@ def board_industry_skills(option):
         list1=sorted(k.values())
         print(list1)
         op=k.get(option)
-        if op==0:
-            gsk_position=0
-        else:
-            gsk_position=list1.index(op)
+        gsk_position = len([x for x in list1 if x < op])
         print(gsk_position)
         percent=(gsk_position/len(list1))*100
         print(percent)
