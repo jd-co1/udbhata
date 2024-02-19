@@ -26,17 +26,20 @@ def HSR(option):
         teva=avg_days('teva')
         takeda=avg_days('takeda')
         k={'drreddy': drreddy, 'novartis': novartis, 'abbott': abbott, 'gsk': gsk, 'teva': teva, 'takeda': takeda}
-        print(k)
+        # print(k)
         list1=sorted(k.values())
-        print(list1)
         op=k.get(option)
-        gsk_position=list1.index(op)+1
+        if op==0:
+            gsk_position=0
+        else:
+            gsk_position=list1.index(op)
         print(gsk_position)
-        total=len(list1)
-        print(total)
-        percent=(gsk_position/total)*100
+        percent=(gsk_position/len(list1))*100
         print(percent)
-        gsk_percent1=(100-percent)*0.06
+        if percent==0:
+            gsk_percent1=0
+        else:
+            gsk_percent1=(100-percent)*0.03
         return gsk_percent1
         # print(gsk_percent1)
 
@@ -58,20 +61,23 @@ def TSR(option):
         teva=tsr_value('teva')
         takeda=tsr_value('takeda')
         k={'drreddy': (drreddy/83), 'novartis': novartis, 'abbott': abbott, 'gsk': gsk, 'teva': teva, 'takeda': takeda}
-        print(k)
+        # print(k)
         list1=sorted(k.values())
-        print(list1)
         op=k.get(option)
-        gsk_position=list1.index(op)+1
+        if op==0:
+            gsk_position=0
+        else:
+            gsk_position=list1.index(op)
         print(gsk_position)
-        total=len(list1)
-        print(total)
-        percent=(gsk_position/total)*100
+        percent=(gsk_position/len(list1))*100
         print(percent)
-        gsk_percent1=(100-percent)*0.06
-        return gsk_percent1    
+        if percent==0:
+            gsk_percent1=0
+        else:
+            gsk_percent1=(100-percent)*0.03
+        return gsk_percent1   
 
-# print(TSR('teva'))
+# print(TSR('gsk'))
 
 def board_skill(option):
     k=information.find_one({"name":f"{option}"})
@@ -96,12 +102,16 @@ def board_industry_skills(option):
         list1=sorted(k.values())
         print(list1)
         op=k.get(option)
-        gsk_position=list1.index(op)+1
+        if op==0:
+            gsk_position=0
+        else:
+            gsk_position=list1.index(op)
         print(gsk_position)
-        total=len(list1)
-        print(total)
-        percent=(gsk_position/total)*100
+        percent=(gsk_position/len(list1))*100
         print(percent)
-        gsk_percent1=(100-percent)*0.03
+        if percent==0:
+            gsk_percent1=0
+        else:
+            gsk_percent1=(100-percent)*0.03
         return gsk_percent1
-# print(board_industry_skills('teva'))
+# print(board_industry_skills('abbott'))
