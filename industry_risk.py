@@ -40,9 +40,10 @@ def industry_specific():
 # option='drreddy'
 def country_specific(option):    
     j=information.find_one({"name":f"{option}"})
-    if "company_Impact" in j:
+    if "company_Impact" and "company_count" in j:
         tsr=j["company_Impact"]
-        return round(tsr,2)
+        count=j["company_count"]
+        return tsr,count
     else:
         df = pd.DataFrame(data)
 
@@ -74,4 +75,4 @@ def country_specific(option):
 
 
 
-# print(country_specific(option))
+print(country_specific('drreddy'))
