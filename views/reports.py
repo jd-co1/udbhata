@@ -5,7 +5,7 @@ from RIsk_score.management_hsr import board_industry_skills,TSR,HSR
 # from pymongo import MongoClient
 from RIsk_score.Financial_score import Debt_to_Equity,EBIT_Net_Sales
 from RIsk_score.company_specific import company_Count,Company_Impact
-from RIsk_score.Non_financial_score import Investment,ROCE
+from RIsk_score.Non_financial_score import Investment,ROCE,ESG
 
 def load_reports():
     st.header("Reports Generator")
@@ -54,7 +54,9 @@ def load_reports():
         st.write(f"{option}'s current Investment:",inves)
         roce=ROCE(option)
         st.write(f"{option}'s ROCE:",roce)
-        st.write(f"Total non-financial score for {option}:",round((inves+roce),2))
+        esg=ESG(option)
+        st.write(f"{option}'s count of YES for ESG questions:",esg)
+        st.write(f"Total non-financial score for {option}:",round((inves+roce+esg),2))
 
 
 
