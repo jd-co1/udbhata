@@ -2,12 +2,13 @@ import pandas as pd
 import numpy as np
 import re,os,glob
 import pymongo
+import streamlit as st
   
 
 # client=pymongo.MongoClient('mongodb://localhost:27017/')
 # mydb=client['drreddy']
 # information=mydb.info
-client=pymongo.MongoClient('mongodb+srv://test:test@cluster0.tw5ieeh.mongodb.net/?retryWrites=true&w=majority')
+client=pymongo.MongoClient(st.secrets['mongodb'])
 
 mydb=client.get_database('Udbhata')
 information=mydb.companies_data

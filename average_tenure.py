@@ -8,8 +8,9 @@ from selenium.webdriver.support import expected_conditions as EC
 import pandas as pd
 import time
 import os, glob
+import streamlit as st
 import pymongo
-client=pymongo.MongoClient('mongodb+srv://test:test@cluster0.tw5ieeh.mongodb.net/?retryWrites=true&w=majority')
+client=pymongo.MongoClient(st.secrets['mongodb'])
 
 mydb=client.get_database('Udbhata')
 information=mydb.companies_data

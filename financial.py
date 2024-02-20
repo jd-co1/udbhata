@@ -2,14 +2,14 @@
 import re
 from concurrent.futures import ThreadPoolExecutor
 import concurrent
-# import streamlit as st
+import streamlit as st
 import pandas as pd
 import pymongo
 # client=pymongo.MongoClient('mongodb://localhost:27017/')
 
 # mydb=client['drreddy']
 # information=mydb.info
-client=pymongo.MongoClient('mongodb+srv://test:test@cluster0.tw5ieeh.mongodb.net/?retryWrites=true&w=majority')
+client=pymongo.MongoClient(st.secrets['mongodb'])
 
 mydb=client.get_database('Udbhata')
 information=mydb.companies_data

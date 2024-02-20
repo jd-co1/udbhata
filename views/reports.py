@@ -8,7 +8,7 @@ from RIsk_score.company_specific import company_Count,Company_Impact
 from RIsk_score.Non_financial_score import Investment,ROCE,ESG
 from RIsk_score.Reputation_score import Sustainability
 from pymongo import MongoClient
-client=MongoClient('mongodb+srv://test:test@cluster0.tw5ieeh.mongodb.net/?retryWrites=true&w=majority')
+client=MongoClient(st.secrets['mongodb'])
 
 mydb=client.get_database('Udbhata')
 information=mydb.companies_data

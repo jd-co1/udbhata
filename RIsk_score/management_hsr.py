@@ -1,10 +1,9 @@
 from pymongo import MongoClient
 import os,math,re
 from dotenv import load_dotenv
-
+import streamlit as st
 load_dotenv()
-
-client=MongoClient('mongodb+srv://test:test@cluster0.tw5ieeh.mongodb.net/?retryWrites=true&w=majority')
+client=MongoClient(st.secrets['mongodb'])
 mydb=client.get_database('Udbhata')
 information=mydb.companies_data
 
