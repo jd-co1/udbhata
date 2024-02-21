@@ -45,7 +45,7 @@ def Investment(option):
             gsk_percent1=0
         else:
             gsk_percent1=(100-percent)*0.025
-        return gsk_percent1
+        return gsk_percent1,k,list1,gsk_position
 
 # print(EBIT_Net_Sales('drreddy'))
 
@@ -86,7 +86,7 @@ def ROCE(option):
         gsk_percent1=0
     else:
         gsk_percent1=(100-percent)*0.025
-    return gsk_percent1
+    return gsk_percent1,k,list1,gsk_position
 # print(ROCE('drreddy'))
 
 def esg_db(option):
@@ -124,4 +124,4 @@ def ESG(option):
         gsk_percent1=0
     else:
         gsk_percent1=(100-percent)*0.05
-    return gsk_percent1
+    return gsk_percent1,k,list1,gsk_position

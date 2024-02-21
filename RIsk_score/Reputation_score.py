@@ -86,6 +86,6 @@ def Sustainability(option):
         gsk_percent1=0
     else:
         gsk_percent1=(100-percent)*0.10
-    return gsk_percent1
+    return gsk_percent1,k,list1,gsk_position
 
 # print(Sustainability('teva'))

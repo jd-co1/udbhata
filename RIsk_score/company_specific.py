@@ -40,7 +40,7 @@ def Company_Impact(option):
             gsk_percent1=0
         else:
             gsk_percent1=(100-percent)*0.075
-        return gsk_percent1
+        return gsk_percent1,k,list1,gsk_position
 
 def count(option):
     k=information.find_one({"name":f"{option}"})
@@ -76,7 +76,7 @@ def company_Count(option):
             gsk_percent1=0
         else:
             gsk_percent1=(100-percent)*0.075
-        return gsk_percent1
+        return gsk_percent1,k,list1,gsk_position
 
 
 # print(company_Count('abbott'))
