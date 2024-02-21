@@ -202,7 +202,7 @@ def load_reports():
                 else:
                     percent21=(100-percent11)
                     st.write(f"100-{percent11}={percent21}")
-                st.write(f"2.5% of {percent21}={percent21} * 0.025:",round((percent21*0.025),2))
+                st.write(f"10% of {percent21}={percent21} * 0.1:",round((percent21*0.025),2))
 
             total5=award
             st.write(f"Total reputation score for {option}:",round((total5),2))
