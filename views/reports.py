@@ -30,7 +30,7 @@ def load_reports():
             st.subheader('Managemeant Score')
             tsr,k1,list11,gsk_position1=TSR(option)
             st.write(f"{option}'s TSR:",tsr)
-            if st.checkbox("shoW calculations"):
+            if st.checkbox(label="Show calculations"):
                 st.write(f"Companies TSR values:",k1)
                 st.write(f"List of tsr values after sorting:",list11)
                 percent1=round((gsk_position1/(len(list11)))*100,2)
@@ -41,7 +41,7 @@ def load_reports():
 
             board,k2,list12,gsk_position2=board_industry_skills(option)#board_industry_skills(option)
             st.write(f"{option}'s Board Industry Experience:",board)
-            if st.checkbox("show calculations"):
+            if st.checkbox(label="Show calculations"):
                 st.write(f"Companies Board Industry Experience values:",k2)
                 st.write(f"List of Board Industry Experience values after sorting:",list12)
                 percent2=round((gsk_position2/(len(list12)))*100,2)
@@ -52,7 +52,7 @@ def load_reports():
 
             Hist,k3,list13,gsk_position3=HSR(option)
             st.write(f"{option}'s Historical Share Price:",Hist)
-            if st.checkbox("Show Calculations"):
+            if st.checkbox(label="Show calculations"):
                 st.write(f"Companies average days values:",k3)
                 st.write(f"List of average days values after sorting:",list13)
                 percent3=round((gsk_position3/(len(list13)))*100,2)
@@ -68,7 +68,7 @@ def load_reports():
             st.subheader('Financial Score')
             ebit,k4,list14,gsk_position4=EBIT_Net_Sales(option)
             st.write(f"{option}'s EBIT/Net Sales:",ebit)
-            if st.checkbox("Show calculationS"):
+            if st.checkbox(label="Show calculations"):
                 st.write(f"all Companies EBIT/Net Sales values:",k4)
                 st.write(f"List of EBIT/Net Sales values after sorting:",list14)
                 percent4=round((gsk_position4/(len(list14)))*100,2)
@@ -79,7 +79,7 @@ def load_reports():
 
             debt,k5,list15,gsk_position5=Debt_to_Equity(option)
             st.write(f"{option}'s Debt to Equity ratio:",debt)
-            if st.checkbox("Show calculations"):
+            if st.checkbox(label="Show calculations"):
                 st.write(f"all Companies EBIT/Net Sales values:",k5)
                 st.write(f"List of EBIT/Net Sales values after sorting:",list15)
                 percent5=round((gsk_position5/(len(list15)))*100,2)
