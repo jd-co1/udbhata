@@ -42,7 +42,6 @@ def Company_Impact(option):
             gsk_percent1=(100-percent)*0.075
         return gsk_percent1
 
-
 def count(option):
     k=information.find_one({"name":f"{option}"})
     if 'company_count' in k:

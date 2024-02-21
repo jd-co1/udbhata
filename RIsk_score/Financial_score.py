@@ -44,7 +44,7 @@ def EBIT_Net_Sales(option):
             gsk_percent1=0
         else:
             gsk_percent1=(100-percent)*0.075
-        return gsk_percent1
+        return gsk_percent1,k,list1,gsk_position
         # print(gsk_percent1)
 
 # print(EBIT_Net_Sales('teva'))
@@ -84,7 +84,7 @@ def Debt_to_Equity(option):
             gsk_percent1=0
         else:
             gsk_percent1=(100-percent)*0.075
-        return gsk_percent1
+        return gsk_percent1,k,list1,gsk_position
 
 
 # print(Debt_to_Equity('teva'))

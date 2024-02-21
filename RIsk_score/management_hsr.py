@@ -36,7 +36,7 @@ def HSR(option):
             gsk_percent1=0
         else:
             gsk_percent1=(100-percent)*0.06
-        return gsk_percent1
+        return gsk_percent1,k,list1,gsk_position
         # print(gsk_percent1)
 
 # print(percent('teva'))
@@ -68,7 +68,7 @@ def TSR(option):
             gsk_percent1=0
         else:
             gsk_percent1=(100-percent)*0.06
-        return gsk_percent1   
+        return gsk_percent1,k,list1,gsk_position  
 
 # print(TSR('gsk'))
 
@@ -103,5 +103,5 @@ def board_industry_skills(option):
             gsk_percent1=0
         else:
             gsk_percent1=(100-percent)*0.03
-        return gsk_percent1
+        return gsk_percent1,k,list1,gsk_position
 # print(board_industry_skills('drreddy'))

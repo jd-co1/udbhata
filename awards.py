@@ -18,7 +18,7 @@ def sustainability_award(option):
                     for i in sources:
                         sources_list.append(i)
                     for i in award:
-                        award_list.append(i)
+                        award_list.append(i.split('\n'))
                     return award_list,sources_list
     else:
         return 0
