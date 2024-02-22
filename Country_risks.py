@@ -1,14 +1,32 @@
 import pandas as pd
 from pymongo import MongoClient
-from country import stre,credit_ratings_algo
+import streamlit as st
+# from country import stre,credit_ratings_algo.
 # from country_risk_web_scraping import credit_ratings_algo
 
-client=MongoClient('mongodb+srv://test:test@cluster0.tw5ieeh.mongodb.net/?retryWrites=true&w=majority')
+client=MongoClient(st.secrets['mongodb'])
 
 mydb=client.get_database('Udbhata')
 information=mydb.countries_data
 
-
+def stre(option):
+    k=information.find_one({"name":f"{option}"})
+    if k:
+      matched=[]
+      exclude_indices = [0, 1]  # Define indices to exclude
+      for index, (key, value) in enumerate(k.items()):
+            if index not in exclude_indices:
+                matched.append(value)
+                # print(f'{key}: {value}')
+      return matched
+    
+    else:
+            matched=0
+            
+#     information.insert_one({"country_risk":matched})
+    
+#   print(matched)
+    return matched
 # my_list = stre('India')
 
 def convert_to_number(value):
