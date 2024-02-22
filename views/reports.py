@@ -7,6 +7,7 @@ from RIsk_score.Financial_score import Debt_to_Equity,EBIT_Net_Sales
 from RIsk_score.company_specific import company_Count,Company_Impact
 from RIsk_score.Non_financial_score import Investment,ROCE,ESG
 from RIsk_score.Reputation_score import Sustainability
+from RIsk_score.Country_risk import COUNTRY
 from pymongo import MongoClient
 client=MongoClient(st.secrets['mongodb'])
 
@@ -141,7 +142,22 @@ def load_reports():
             st.write(f"Total company specific score for {option}:",round((total3),2))
 
             st.subheader("Country Specific Risk Score")
-            st.write("NA")
+            country,k12,list22,gsk_position12=COUNTRY(option)
+            st.write(f"{option}'s Country Risk:",round(country,2))#,country)
+            if st.checkbox(label="Show calculations",key=12):
+                st.write(f"Companies Country Risk values:",k12)
+                st.write(f"List of Country Risk values after sorting:",list22)
+                percent12=round((gsk_position12/(len(list22)))*100,2)
+                st.write(f"number companies below {option}=({gsk_position12}/{len(list22)})*100:",percent12)
+                if percent12==0:
+                    percent22=0
+                else:
+                    percent22=(100-percent12)
+                    st.write(f"100-{percent12}={percent22}")
+                st.write(f"15% of {percent22}={percent22} * 0.15:",round((percent22*0.15),2))
+            total6=country
+            st.write(f"Total country Risk score",round((total6),2))
+
 
             st.subheader("Non-financial Risk Score")
             inves,k8,list18,gsk_position8=Investment(option)
@@ -209,7 +225,7 @@ def load_reports():
 
 
             st.subheader("Overall Score")
-            total=total1+total2+total3+total4+total5
+            total=total1+total2+total3+total4+total5+total6
             # information.update_one({"name":f"{option}"},{"$set":{
             #                                         "total_risk_score":total
             #             }})

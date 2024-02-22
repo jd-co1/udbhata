@@ -6,19 +6,19 @@ import pymongo
 # client=pymongo.MongoClient('mongodb://localhost:27017/')
 # mydb=client['drreddy']
 # information=mydb.info
-client=pymongo.MongoClient(st.secrets['mongodb'])
+client=pymongo.MongoClient('mongodb+srv://test:test@cluster0.tw5ieeh.mongodb.net/?retryWrites=true&w=majority')
 
 mydb=client.get_database('Udbhata')
-information=mydb.companies_data
+information=mydb.countries_data
 
 
-def country_risk():
+def country_risk(option):
     data=pd.read_excel("Country_Risk_Summary_Table_1.xlsx",header=None)
     # data=pd.read_csv("Country_risk.csv",header=None)
 
     df=pd.DataFrame(data)
     # df = df.drop(df.index[:5]).reset_index(drop=True)
-    matched=df[df.loc[:,0]=='IND']
+    matched=df[df.loc[:,1]==f'{option}']
 
 
     for index,row in matched.iterrows():
@@ -26,7 +26,7 @@ def country_risk():
         # w=pd.DataFrame(w)
     
     return w
-# print(country_risk())
+# print(country_risk("United Kingdom"))
 
 #Country risk from external sources
 from bs4 import BeautifulSoup
@@ -41,93 +41,97 @@ import time
 import os, glob
 import string
 import requests
-# chrome_options = Options()
-# chrome_options.add_argument("--headless=new")
+chrome_options = Options()
+chrome_options.add_argument("--headless=new")
 # driver = webdriver.Chrome(options=chrome_options)
-# driver = webdriver.Chrome()
-def Corruption_Perceptions_Index():
-    url = "https://www.transparency.org/en/countries/india"
+driver = webdriver.Chrome()
+def Corruption_Perceptions_Index(option):
+    if ' ' in option:
+          words=option.split()
+          option="-".join(word.lower() for word in words)
+    else:
+        option=option.lower()
+    url = f"https://www.transparency.org/en/countries/{option}"
 
     driver.get(url)
     driver.maximize_window()
 
     def wait_for_element(selector,delay=10):
             return WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.XPATH, selector)))
-    rank=wait_for_element("/html/body/main/div[4]/section[1]/div/section[1]/div[1]/div[1]/p[2]").text
+    allow=wait_for_element('//*[@id="CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll"]')
+    allow.click()
+    
+    rank=wait_for_element('//*[@id="cpi"]/div[1]/div[1]/p[2]').text
     return rank
     # print(rank)
-
-def Competitiveness_Index():
-      url=f"https://worldcompetitiveness.imd.org/Copyright?returnUrl=%2Fcountryprofile%2FIN%2Fwcy"
-      driver.get(url)
-      driver.maximize_window()
-      driver.implicitly_wait(20)
-      def wait_for_element(selector,delay=70):
-            return WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.XPATH, selector)))
-      accept=wait_for_element("/html/body/div[6]/div/div/div/a[2]/span")
-      accept.click()
-      index=wait_for_element("/html/body/div[3]/div/section[1]/div[1]/div[2]/p").text
-      numeric_part = index.split(" ")[0]  # Get the first part of the string
-      numeric_value = ''.join(filter(str.isdigit, numeric_part))  # Remove non-numeric characters
-      # print(numeric_value)
-      return numeric_value
+# print(Corruption_Perceptions_Index("israel"))
+def Competitiveness_Index(option):
+      data=pd.read_excel("Competitiveness_2023.xlsx",header=None)
+      df=pd.DataFrame(data)
+      df.set_index(0,inplace=True)
+      if option=='United States':
+            option='USA'
+      matched=df.loc[option][1]
+      return matched
 
 # print(Competitiveness_Index())
 
 
-def ease_of_doing_business():
-      url="https://archive.doingbusiness.org/en/data/exploreeconomies/india"
+def ease_of_doing_business(option):
+      url="https://archive.doingbusiness.org/en/data"
 
       driver.get(url)
       driver.maximize_window()
       # driver.implicitly_wait(10)
       def wait_for_element(selector,delay=20):
             return WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.XPATH, selector)))
-
+      click=wait_for_element("/html/body/div[3]/div/div/div/div/div/div[3]/div[1]/div[1]/div/div/div/div/div[1]/div[2]/div[2]/div/span/span/span[1]")
+      click.click()
+      input=wait_for_element('//*[@id="economylist-list"]/span/input')
+      time.sleep(2)
+      input.send_keys(f"{option}")
+      time.sleep(2)
+      input.send_keys(Keys.ENTER)
       db_rank=wait_for_element("/html/body/div[5]/div[2]/div/div/div/div/div[1]/div[2]/div[2]/div/div/div[1]/div[2]/table/tbody/tr[1]/td[2]").text
-      
+      time.sleep(5)
       # print(db_rank)
       return db_rank
 
 # print(ease_of_doing_business())
       
 
-def trading_economics():
-      driver=webdriver.Chrome()
-      url="https://tradingeconomics.com/country-list/rating"
-      driver.get(url)
-      # driver.maximize_window()
-      driver.minimize_window()
-    #   actions = ActionChains(driver)
-      # driver.implicitly_wait(10)
-      def wait_for_element(selector,delay=20):
-            return WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.XPATH, selector)))
-      # driver.execute_script('document.getElementsByTagName("html")[0].style.scrollBehavior = "auto"')
-      row=wait_for_element("/html/body/form/div[5]/div/div[1]/div[1]/div/table/tbody/tr[63]")
-      columns = row.find_elements(By.TAG_NAME, 'td')
-      # column=[]
-      # Iterate through columns and print the text
-      # for column in columns:
-      #       print(column.text)
-      
-      # rating=wait_for_element("/html/body/form/div[5]/div/div[1]/div[1]/div/table/tbody/tr[63]/td[5]/span/text")
-      # rating=wait_for_element('//*[@id="ctl00_ContentPlaceHolder1_ctl01_GridView1"]/tbody/tr[63]/td[5]/span')
-      # actions.move_to_element(rating).perform()
-      # wait_for_element("//text")
-      # rating=rating.text
-      return columns
+# 
+def trading_economics(option):
+    if ' ' in option:
+          words=option.split()
+          option="-".join(word.lower() for word in words)
+    else:
+        option=option.lower()
+    url=f"https://www.fxempire.com/macro/credit-ratings/{option}"
+    driver = webdriver.Chrome()
+    driver.get(url)
+    # html = driver.page_source
+    driver.maximize_window()
 
-# print(trading_economics()[2].text.upper())
+    def wait_for_element(selector,delay=20):
+                return WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.XPATH, selector)))
 
-def credit_ratings_algo():
+    tr=wait_for_element('//*[@id="content"]/div[2]/div[7]/div/div[3]/div/div/table/tbody/tr')
+    td=tr.find_elements(By.XPATH, ".//td")
+    td_vals=[td.text for td in td]
+    return td_vals
+# print(trading_economics("United Kingdom"))
+
+def credit_ratings_algo(option):
       data=pd.read_csv("credit_ratings.csv")
       df=pd.DataFrame(data)
       # print(df)
-      cr=trading_economics()
-      if len(cr) >= 4:
-        cr_sp = cr[1].text.upper()
-        cr_moodys = cr[2].text
-        cr_fitch = cr[3].text.split()[0].upper()
+      cr=trading_economics(option)
+      print(cr)
+      if len(cr) >= 3:
+        cr_moodys = cr[0]
+        cr_sp = cr[2].upper()
+        cr_fitch = cr[4].split()[0].upper()
 
         filtered_df1= df.loc[df['S&P'].isin([cr_sp])].iloc[0]['Grade'] if not df.loc[df['S&P'].isin([cr_sp])].empty else None
         filtered_df2 = df.loc[df["Moody's"].isin([cr_moodys])].iloc[0]['Grade'] if not df.loc[df["Moody's"].isin([cr_moodys])].empty else None
@@ -135,80 +139,61 @@ def credit_ratings_algo():
       # print(filtered_df1,filtered_df2,filtered_df3)
         avg=(filtered_df1+filtered_df2+filtered_df3)/3
       return round(avg)
-# print(credit_ratings_algo())
+# print(credit_ratings_algo('United Kingdom'))      
 
 # print(trading_economics())
 
-def Terror():
+def Terror(option):
     data=pd.read_csv("terror_impact.csv")
     df=pd.DataFrame(data)
+    # if option=='United States':
 
-    matched = df[df['COUNTRY'].str.strip().str.lower() == 'India'.strip().lower()].iat[0, 1]
+    matched = df[df['COUNTRY'].str.strip().str.lower().str.contains(option.strip().lower())].iat[0, 1]
     return matched
-
-def stre():
-    k=information.find_one({"name":f"drreddy"})
-    if 'country_risk' in k:
-                    data_dict=k['country_risk']
-    # Extract values from data_dict
-                    esg_data = data_dict
-
-                        # Create a list of dictionaries to represent the data
-                    data_list = []
-                    for esg_item in esg_data:
-                              esg_dict = {
-                                    'Question': esg_item.get('Metric', ''),
-                                    'Value': esg_item.get('Value', '')
-                              }
-                              data_list.append(esg_dict)
-                              df=pd.DataFrame(data_list)
-                              matched=df['Value'].to_list()
+# print(Terror("UNITED states"))
+def stre(option):
+    k=information.find_one({"name":f"{option}"})
+    if k:
+      matched=[]
+      exclude_indices = [0, 1]  # Define indices to exclude
+      for index, (key, value) in enumerate(k.items()):
+            if index not in exclude_indices:
+                matched.append(value)
+                # print(f'{key}: {value}')
+      return matched
+    
     else:
-
             data = {
-                      'Metric': ['Political Risk Short Term', 
-                                 'Political Risk Medium/Long Term',
-                                   f' Premium classification OECD', 
-                                  #  'Commercial Risk',
-                                     'Business environment risk','Political Violence Risk',
-                                     'Expropriation and Government Action Risk',
-                                     'Currency Inconvertibility and Transfer Restriction Risk',
-                                     'Corruption Perception Index',
-                                     'Ease of Doing Business Rank',
-                                     'Economic Risk (credit rating)',
-                                     'Competitiveness Index',
-                                     'Golbal Terrorism Impact'],
-                      'Value': [
-                          country_risk()[2],
-                          country_risk()[3],
-                          country_risk()[4],
-                          # country_risk()[5],
-                          country_risk()[6],
-                          country_risk()[7],
-                          country_risk()[8],
-                          country_risk()[9],
-                          Corruption_Perceptions_Index(),
-                          ease_of_doing_business(),
-                        #   trading_economics(),
-                          credit_ratings_algo(),
-                          Competitiveness_Index(),
-                          Terror()
-                      ]
-                  }
-            df=pd.DataFrame(data)
-            data_dict = df.to_dict(orient='records')
+                      'name':f'{option}',
+                      'Political Risk Short Term':country_risk(option)[2],
+                      'Political Risk Medium/Long Term':country_risk(option)[3],
+                      'Premium classification OECD':country_risk(option)[4],
+                      'Business environment risk':country_risk(option)[6],
+                      'Political Violence Risk':country_risk(option)[7],
+                      'Expropriation and Government Action Risk':country_risk(option)[8],
+                      'Currency Inconvertibility and Transfer Restriction Risk':country_risk(option)[9],
+                      'Corruption Perception Index':Corruption_Perceptions_Index(option),
+                      'Ease of Doing Business Rank':ease_of_doing_business(option),
+                      'Economic Risk (credit rating)':credit_ratings_algo(option),
+                      'Competitiveness Index':Competitiveness_Index(option),
+                      'Golbal Terrorism Impact':Terror(option)
+                      
+                  }         
+            df = pd.DataFrame.from_dict(data, orient='index', columns=['Value'])
+
+            # Reset the index to have metrics as a separate column
+            df.reset_index(inplace=True)
+            df.rename(columns={'index': 'Metric'}, inplace=True)
             print(df)
             matched=df['Value'].to_list()
             print(matched)
-
-            information.update_one({"name":f"drreddy"},{"$set":{
-                                                "country_risk":data_dict
-                    }})
+            information.insert_one(data)
+            
 #     information.insert_one({"country_risk":matched})
     
 #   print(matched)
     return matched
-# print(stre('drreddy'))
+# print(stre('Israel'))
 
 
 
