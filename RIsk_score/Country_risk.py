@@ -19,6 +19,18 @@ def db(option):
         return f'Cumulative risk not found for {option}'
 
 def COUNTRY(option):
+    if option=='drreddy':
+        option='India'
+    elif option=='takeda':
+        option='Japan'
+    elif option=='teva':
+        option='Israel'
+    elif option=='gsk':
+        option='United Kingdom'
+    elif option=='abbott':
+        option='United States'
+    else:
+        option='Switzerland'
     India=db('India')
     USA=db('United States')
     UK=db('United Kingdom')
