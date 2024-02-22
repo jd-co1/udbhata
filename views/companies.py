@@ -87,7 +87,7 @@ def load_companies():
             st.header("Company Specific Risk:")
             st.table(df6)
             st.header("Country Risk:")
-            st.write("Total caluculated score from the algorithmm:",cumulative_risk())
+            st.write("Total caluculated score from the algorithmm:",cumulative_risk(option))
             st.header("Non-Financial:")
             data3={
                 'Metric': ['Current Investment (in Crores)', 'ROCE'],
