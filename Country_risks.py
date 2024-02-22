@@ -53,6 +53,18 @@ def convert_to_number(value):
 # print(converted_list)
 
 def cumulative_risk(option):
+    if option=='drreddy':
+        option='India'
+    elif option=='takeda':
+        option='Japan'
+    elif option=='teva':
+        option='Israel'
+    elif option=='gsk':
+        option='United Kingdom'
+    elif option=='abbott':
+        option='United States'
+    else:
+        option='Switzerland'
     k=information.find_one({"name":f"{option}"})
     if 'cumulative_risk' in k:
             cumulative_risk=k['cumulative_risk']
