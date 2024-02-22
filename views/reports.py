@@ -140,32 +140,23 @@ def load_reports():
 
             total3=impact+count
             st.write(f"Total company specific score for {option}:",round((total3),2))
-
+            
 
             st.subheader("Country Specific Risk Score")
-            countries_df = pd.DataFrame({'Country': ['India','United States','United Kingdom','Switzerland','Japan','Israel']})
-    
-            st.header('Companies')
-            CO = st.selectbox(
-                'Select a company',
-                countries_df['Country'],
-                index=None,
-                placeholder="Countries")
-            if CO=='India' or CO=='United States' or CO=='United Kingdom' or CO=='Switzerland' or CO=='Japan' or CO=='Israel':
-                country,k12,list22,gsk_position12=COUNTRY(CO)
-                st.write(f"{CO}'s Country Risk:",round(country,2))#,country)
-                if st.checkbox(label="Show calculations",key=12):
-                    st.write(f"Companies Country Risk values:",k12)
-                    st.write(f"List of Country Risk values after sorting:",list22)
-                    percent12=round((gsk_position12/(len(list22)))*100,2)
-                    st.write(f"number countries below {CO}=({gsk_position12}/{len(list22)})*100:",percent12)
-                    if percent12==0:
-                        percent22=0
-                    else:
-                        percent22=(100-percent12)
-                        st.write(f"100-{percent12}={percent22}")
-                    st.write(f"15% of {percent22}={percent22} * 0.15:",round((percent22*0.15),2))
-                total6=country
+            country,k12,list22,gsk_position12=COUNTRY(option)
+            st.write(f"{option}'s Country Risk:",round(country,2))#,country)
+            if st.checkbox(label="Show calculations",key=12):
+                st.write(f"Companies Country Risk values:",k12)
+                st.write(f"List of Country Risk values after sorting:",list22)
+                percent12=round((gsk_position12/(len(list22)))*100,2)
+                st.write(f"number companies below {option}=({gsk_position12}/{len(list22)})*100:",percent12)
+                if percent12==0:
+                    percent22=0
+                else:
+                    percent22=(100-percent12)
+                    st.write(f"100-{percent12}={percent22}")
+                st.write(f"15% of {percent22}={percent22} * 0.15:",round((percent22*0.15),2))
+            total6=country
             st.write(f"Total country Risk score",round((total6),2))
 
 
@@ -232,11 +223,10 @@ def load_reports():
 
             total5=award
             st.write(f"Total reputation score for {option}:",round((total5),2))
+
+
             st.subheader("Overall Score")
-            if CO:
-                total=total1+total2+total3+total4+total5+total6
-            else:
-                total=total1+total2+total3+total4+total5
+            total=total1+total2+total3+total4+total5+total6
             # information.update_one({"name":f"{option}"},{"$set":{
             #                                         "total_risk_score":total
             #             }})
