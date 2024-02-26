@@ -41,7 +41,7 @@ def load_companies():
             # st.write(f'Ebitda/Net sales of {option}:{Ebitda()} percent')
             # st.write(f'Debt to equity ratio of {option}:',debt_to_equity())
             data = {
-                'Metric': ['Average Tenure (months)','Board Industry Experience (%)', 'TSR', f' Average Days to Recover from 10% drop'],
+                'Metric': ['Average Tenure (months)','Board Industry Experience (%)', 'TSR', f' Average Days to Recover from 5% drop'],
                 'Value': [
                     average_tenure_of_a_company(option),
                     Board_industry_skills(option),
