@@ -90,7 +90,7 @@ def load_companies():
             st.write("Total caluculated score from the algorithmm:",cumulative_risk(option))
             st.header("Non-Financial:")
             data3={
-                'Metric': ['Current Investment (in Crores)', 'ROCE'],
+                'Metric': ['Current Investment', 'ROCE'],
                 'Value': [
                     current_investment(option),
                     ROCE_2023(option)
