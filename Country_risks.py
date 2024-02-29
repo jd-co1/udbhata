@@ -71,8 +71,8 @@ def cumulative_risk(option):
             cumulative_risk=k['cumulative_risk']
             return cumulative_risk  
     else:
-
-        converted_list = [convert_to_number(value) for value in stre(f'{option}')]
+        not_converted=stre(f'{option}')
+        converted_list = [convert_to_number(value) for value in not_converted]
         print(converted_list)
 
         Political_Risk_Short_term=round((5/100)*(converted_list[0]/7)*100,2)
@@ -105,7 +105,7 @@ def cumulative_risk(option):
             # print(sum)
 
         # print(sum)
-        return sum,converted_list,names
+        return sum,not_converted,names
 
 
 # print(cumulative_risk('Israel'))
