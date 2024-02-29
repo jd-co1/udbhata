@@ -96,7 +96,7 @@ def load_companies():
 
                 # Set the 'key' column as the index
                 # df.set_index('key', inplace=True)
-                st.table(result_dict)
+                st.dataframe(result_dict)
                 # for key, value in result_dict.items():
                 #     st.write(f"{key}:{value}")
             st.header("Non-Financial:")
