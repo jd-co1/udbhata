@@ -107,10 +107,10 @@ def load_companies():
                 st.write(f"20% weightage of Expropriation & Government Action Risk so 20% of {converted[5]}/7 is",round((20/100)*(converted[5]/7)*100,2))
                 st.write(f"10% weightage of Currency Inconvertibility and Transfer Restriction Risk so 10% of {converted[6]}/7 is",round((10/100)*(converted[6]/7)*100,2))
                 st.write(f"4% weightage of Corruption Perceptions Index so 4% of {converted[7]} is",round((4/100)*converted[7],2))
-                st.write(f"6% weightage of Ease of Doing business so 6% of {converted[8]} is",round((6/100)*(converted[8])*100,2))
-                st.write(f"20% weightage of Economic Risk so 20% of {converted[9]} is",round((20/100)*(converted[9])*100,2))
-                st.write(f"3% weightage of Competitiveness Index so 3% of {converted[10]} is",round((3/100)*(converted[10])*100,2))
-                st.write(f"2% weightage of Global Terrorism Impact so 2% of {converted[11]} is",round((2/100)*(converted[10])*100,2))
+                st.write(f"6% weightage of Ease of Doing business so 6% of {converted[8]} is",round((6/100)*(converted[8]),2))
+                st.write(f"20% weightage of Economic Risk so 20% of {converted[9]} is",round((20/100)*(converted[9]),2))
+                st.write(f"3% weightage of Competitiveness Index so 3% of {converted[10]} is",round((3/100)*(converted[10]),2))
+                st.write(f"2% weightage of Global Terrorism Impact so 2% of {converted[11]} is",round((2/100)*(converted[10]),2))
             st.header("Non-Financial:")
             data3={
                 'Metric': ['Current Investment', 'ROCE'],
