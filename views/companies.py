@@ -90,10 +90,15 @@ def load_companies():
             total,values_list,names_list=cumulative_risk(option)
             st.write("Total caluculated score from the algorithmm:",total)
             if st.checkbox(label="Show calculations",key=2):
-                result_dict = dict(zip(names_list, values_list))
+                # result_dict = dict(zip(names_list, values_list))
+                # Create a DataFrame
+                df = pd.DataFrame({'key': names_list, 'value': values_list})
 
-                for key, value in result_dict.items():
-                    st.write(f"{key}:{value}")
+                # Set the 'key' column as the index
+                df.set_index('key', inplace=True)
+                st.table(df)
+                # for key, value in result_dict.items():
+                #     st.write(f"{key}:{value}")
             st.header("Non-Financial:")
             data3={
                 'Metric': ['Current Investment', 'ROCE'],
