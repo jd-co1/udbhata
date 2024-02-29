@@ -88,24 +88,29 @@ def load_companies():
             st.table(df6)
             st.header("Country Risk:")
             total,values_list,names_list,converted=cumulative_risk(option)
-            names_list1=names_list
+            # names_list1=names_list
             st.write("Total caluculated score from the algorithmm:",total)
             if st.checkbox(label="Show calculations",key=2):
-                result_dict = dict(zip(names_list, values_list))
-                dictt=dict(zip(names_list1, converted))
-                col1, col2 = st.columns(2)
-                with col1:
-                    st.dataframe(result_dict)
-                with col2:
-                    st.dataframe(dictt)
-                # Create a DataFrame
-                # df = pd.DataFrame({'key': names_list, 'value': values_list})
-
-                # Set the 'key' column as the index
-                # df.set_index('key', inplace=True)
-                # st.dataframe(result_dict)
-                # for key, value in result_dict.items():
-                #     st.write(f"{key}:{value}")
+                # result_dict = dict(zip(names_list, values_list))
+                dictt=dict(zip(names_list, converted))
+                # col1, col2 = st.columns(2)
+                # with col1:
+                #     st.dataframe(result_dict)
+                # with col2:
+                st.dataframe(dictt)
+                # round((5/100)*(converted_list[0]/7)*100,2)
+                st.write(f"5% weightage  for Political Risk Short term so 5% of {converted[0]}/7 is",round((5/100)*(converted[0]/7)*100,2))
+                st.write(f"10% weightage  for Political Risk Medium/long Term so 10% of {converted[1]}/7 is",round((10/100)*(converted[1]/7)*100,2))
+                st.write(f'5% weightage for Premium Classification OECD so 5% of {converted[2]}/7 is',round((5/100)*(converted[2]/7)*100,2) )
+                st.write(f"10% weightage  for Business Environment Risk so 10% of {converted[3]}/7 is",round((10/100)*(converted[3]/7)*100,2))
+                st.write(f"5% weightage  for Political Violence Risk so 5% of {converted[4]}/7 is",round((5/100)*(converted[4]/7)*100,2))
+                st.write(f"20% weightage of Expropriation & Government Action Risk so 20% of {converted[5]}/7 is",round((20/100)*(converted[5]/7)*100,2))
+                st.write(f"10% weightage of Currency Inconvertibility and Transfer Restriction Risk so 10% of {converted[6]}/7 is",round((10/100)*(converted[6]/7)*100,2))
+                st.write(f"4% weightage of Corruption Perceptions Index so 4% of {converted[7]}/7 is",round((4/100)*(converted[7]/7)*100,2))
+                st.write(f"6% weightage of Ease of Doing business so 6% of {converted[8]}/7 is",round((6/100)*(converted[8]/7)*100,2))
+                st.write(f"20% weightage of Economic Risk so 20% of {converted[9]}/7 is",round((20/100)*(converted[9]/7)*100,2))
+                st.write(f"3% weightage of Competitiveness Index so 3% of {converted[10]}/7 is",round((3/100)*(converted[10]/7)*100,2))
+                st.write(f"2% weightage of Global Terrorism Impact so 2% of {converted[11]}/7 is",round((2/100)*(converted[10]/7)*100,2))
             st.header("Non-Financial:")
             data3={
                 'Metric': ['Current Investment', 'ROCE'],

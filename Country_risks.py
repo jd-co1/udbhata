@@ -93,7 +93,7 @@ def cumulative_risk(option):
                 Competitiveness_Index,Global_Terrorism_Impact]
         print(values)
         names=['Political_Risk_Short_term','Political_Risk_Medium_long_Term','Premium_Classification_OECD','Business_Environment_Risk','Political_Violence_Risk','Expropriation_and_Government_Action_Risk',
-                'Currency_Inconvertibility_and_Transfer_Restriction_Risk','Corruption_Perceptions_Index','Ease_of_Doing_business,Economic_risk',
+                'Currency_Inconvertibility_and_Transfer_Restriction_Risk','Corruption_Perceptions_Index','Ease_of_Doing_business','Economic_risk',
                 'Competitiveness_Index','Global_Terrorism_Impact']
         sum=0
         for value in values:
