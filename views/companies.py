@@ -95,7 +95,7 @@ def load_companies():
                 df = pd.DataFrame({'key': names_list, 'value': values_list})
 
                 # Set the 'key' column as the index
-                df.set_index('key', inplace=True)
+                # df.set_index('key', inplace=True)
                 st.table(df)
                 # for key, value in result_dict.items():
                 #     st.write(f"{key}:{value}")
