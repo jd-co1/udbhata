@@ -88,10 +88,11 @@ def load_companies():
             st.table(df6)
             st.header("Country Risk:")
             total,values_list,names_list,converted=cumulative_risk(option)
+            names_list1=names_list
             st.write("Total caluculated score from the algorithmm:",total)
             if st.checkbox(label="Show calculations",key=2):
                 result_dict = dict(zip(names_list, values_list))
-                dictt=dict(zip(names_list, converted))
+                dictt=dict(zip(names_list1, converted))
                 col1, col2 = st.columns(2)
                 with col1:
                     st.dataframe(result_dict)
@@ -102,7 +103,7 @@ def load_companies():
 
                 # Set the 'key' column as the index
                 # df.set_index('key', inplace=True)
-                st.dataframe(result_dict)
+                # st.dataframe(result_dict)
                 # for key, value in result_dict.items():
                 #     st.write(f"{key}:{value}")
             st.header("Non-Financial:")
