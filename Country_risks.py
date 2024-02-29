@@ -105,7 +105,7 @@ def cumulative_risk(option):
             # print(sum)
 
         # print(sum)
-        return sum,not_converted,names
+        return sum,not_converted,names,converted_list
 
 
 # print(cumulative_risk('Israel'))
