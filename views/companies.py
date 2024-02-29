@@ -87,7 +87,7 @@ def load_companies():
             st.header("Company Specific Risk:")
             st.table(df6)
             st.header("Country Risk:")
-            total,values_list,names_list=cumulative_risk()
+            total,values_list,names_list=cumulative_risk(option)
             st.write("Total caluculated score from the algorithmm:",total)
             if st.checkbox(label="Show calculations",key=2):
                 result_dict = dict(zip(names_list, values_list))

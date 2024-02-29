@@ -10,6 +10,7 @@ mydb=client.get_database('Udbhata')
 information=mydb.countries_data
 
 def stre(option):
+    
     k=information.find_one({"name":f"{option}"})
     if k:
       matched=[]
