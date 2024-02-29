@@ -66,7 +66,7 @@ def cumulative_risk(option):
     else:
         option='Switzerland'
     k=information.find_one({"name":f"{option}"})
-    if 'cumulative_risk' in k:
+    if 'cumulative_risk1' in k:
             cumulative_risk=k['cumulative_risk']
             return cumulative_risk  
     else:
@@ -91,18 +91,20 @@ def cumulative_risk(option):
                 Currency_Inconvertibility_and_Transfer_Restriction_Risk,Corruption_Perceptions_Index,Ease_of_Doing_business,Economic_risk,
                 Competitiveness_Index,Global_Terrorism_Impact]
         print(values)
-        
+        names=['Political_Risk_Short_term','Political_Risk_Medium_long_Term','Premium_Classification_OECD','Business_Environment_Risk','Political_Violence_Risk','Expropriation_and_Government_Action_Risk',
+                'Currency_Inconvertibility_and_Transfer_Restriction_Risk','Corruption_Perceptions_Index','Ease_of_Doing_business,Economic_risk',
+                'Competitiveness_Index','Global_Terrorism_Impact']
         sum=0
         for value in values:
             sum+=value
-        information.update_one({"name":f"{option}"},{"$set":{
-            "cumulative_risk":sum
-        }})
+        # information.update_one({"name":f"{option}"},{"$set":{
+        #     "cumulative_risk":sum
+        # }})
             # print(value)
             # print(sum)
 
         # print(sum)
-        return sum
+        return sum,converted_list,names
 
 
 # print(cumulative_risk('Israel'))
